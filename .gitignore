@@ -1,0 +1,2 @@
+# ffmpeg binaries are too big for git (~130 MB each); see README for where to get them.
+ffmpeg/*.exe
