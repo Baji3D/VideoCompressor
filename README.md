@@ -1,3 +1,5 @@
+<p align="center"><img src="icon.png" width="160" alt="Video Compressor icon: a pixel-art hydraulic press"></p>
+
 # Video Compressor
 
 Compresses videos to a target file size (8 MB, 10 MB, 25 MB...) straight from the Windows right-click menu. Uses the NVIDIA GPU encoder when available, so most clips take seconds. Falls back to the CPU on other machines.

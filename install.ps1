@@ -1,6 +1,6 @@
 # Installs Video Compressor for the current user (no admin needed):
 #   - copies the app to %LOCALAPPDATA%\Programs\VideoCompressor
-#   - adds a "Compress video" submenu when right-clicking video files
+#   - adds a "Video Compressor" submenu when right-clicking video files
 #   - adds a Start Menu shortcut and an entry in Settings > Apps for uninstalling
 
 $ErrorActionPreference = "Stop"
@@ -8,10 +8,11 @@ $src = $PSScriptRoot
 $dest = Join-Path $env:LOCALAPPDATA "Programs\VideoCompressor"
 
 New-Item -ItemType Directory -Force (Join-Path $dest "ffmpeg") | Out-Null
-foreach ($f in "compress.ps1", "launch.vbs", "uninstall.ps1") { Copy-Item (Join-Path $src $f) $dest -Force }
+foreach ($f in "compress.ps1", "launch.vbs", "uninstall.ps1", "icon.ico") { Copy-Item (Join-Path $src $f) $dest -Force }
 Copy-Item (Join-Path $src "ffmpeg\*") (Join-Path $dest "ffmpeg") -Force
 
 $launch = "wscript.exe `"$dest\launch.vbs`""
+$icon = Join-Path $dest "icon.ico"
 $sizes = 8, 10, 25, 50
 $extensions = ".mp4", ".mov", ".mkv", ".avi", ".webm", ".wmv", ".m4v", ".flv", ".mpg", ".mpeg", ".mts", ".m2ts", ".3gp"
 
@@ -23,7 +24,7 @@ function Set-Key([string]$Path, [hashtable]$Values) {
 
 foreach ($ext in $extensions) {
     $menu = "Software\Classes\SystemFileAssociations\$ext\shell\VideoCompressor"
-    Set-Key $menu @{ MUIVerb = "Video Compressor";SubCommands = ""; Icon = "imageres.dll,-23" }
+    Set-Key $menu @{ MUIVerb = "Video Compressor"; SubCommands = ""; Icon = $icon }
     $i = 0
     foreach ($mb in $sizes) {
         $i++
@@ -43,14 +44,14 @@ $shell = New-Object -ComObject WScript.Shell
 $lnk = $shell.CreateShortcut((Join-Path ([Environment]::GetFolderPath("Programs")) "Video Compressor.lnk"))
 $lnk.TargetPath = "wscript.exe"
 $lnk.Arguments = "`"$dest\launch.vbs`""
-$lnk.IconLocation = "imageres.dll,-23"
+$lnk.IconLocation = $icon
 $lnk.Save()
 
 Set-Key "Software\Microsoft\Windows\CurrentVersion\Uninstall\VideoCompressor" @{
     DisplayName = "Video Compressor"
     Publisher = $env:USERNAME
     InstallLocation = $dest
-    DisplayIcon = "imageres.dll,-23"
+    DisplayIcon = $icon
     UninstallString = "powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$dest\uninstall.ps1`""
     NoModify = 1
     NoRepair = 1

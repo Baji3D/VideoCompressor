@@ -147,6 +147,8 @@ function Compress-Video([string]$InputPath, [hashtable]$Opt) {
 }
 
 $font = New-Object System.Drawing.Font("Segoe UI", 9)
+$iconPath = Join-Path $PSScriptRoot "icon.ico"
+$appIcon = if (Test-Path $iconPath) { New-Object System.Drawing.Icon $iconPath } else { $null }
 
 # ---------- Quick mode (right-click menu) ----------
 
@@ -170,6 +172,7 @@ if ($Quick -gt 0) {
     $qf.StartPosition = "CenterScreen"
     $qf.TopMost = $true
     $qf.Font = $font
+    if ($appIcon) { $qf.Icon = $appIcon }
     $qLabel = New-Object System.Windows.Forms.Label
     $qLabel.SetBounds(12, 10, 396, 20)
     $qLabel.AutoEllipsis = $true
@@ -237,6 +240,7 @@ $form.FormBorderStyle = "FixedDialog"
 $form.MaximizeBox = $false
 $form.StartPosition = "CenterScreen"
 $form.Font = $font
+if ($appIcon) { $form.Icon = $appIcon }
 $form.AllowDrop = $true
 
 function New-Control($Type, $X, $Y, $W, $H, $Text = "") {
