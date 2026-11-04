@@ -29,4 +29,3 @@ Settings > Apps > Video Compressor > Uninstall.
 | `launch.vbs` | Starts the app without a console window flashing up |
 | `install.ps1` / `Install.bat` | Copies the app to `%LOCALAPPDATA%\Programs\VideoCompressor` and adds the right-click menu |
 | `uninstall.ps1` | Removes everything the installer added |
-| `Compress video.bat` | Opens the full window without installing (you can also drag videos onto it) |
