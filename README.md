@@ -7,8 +7,7 @@ Compresses videos to a target file size (8 MB, 10 MB, 25 MB...) straight from th
 ## Setup
 
 1. **Get ffmpeg.** Download the "full" or "essentials" build from https://www.gyan.dev/ffmpeg/builds/ and put `ffmpeg.exe` and `ffprobe.exe` in the `ffmpeg` folder. (They aren't in the repo because they're too large.)
-2. **For EXR colour (optional):** copy the `oiio` and `ocio` folders from `vfx-transcode` (`D:\workgroup\utils\vfx-transcode`) into this folder. Without them, EXR sequences still work but get a plain sRGB curve, not the ACES look.
-3. Double-click **Install.bat**. No admin rights needed.
+2. Double-click **Install.bat**. No admin rights needed.
 
 ## Use
 
@@ -37,3 +36,5 @@ Settings > Apps > Video Compressor > Uninstall.
 | `launch.vbs` | Starts the app without a console window flashing up |
 | `install.ps1` / `Install.bat` | Copies the app to `%LOCALAPPDATA%\Programs\VideoCompressor` and adds the right-click menu |
 | `uninstall.ps1` | Removes everything the installer added |
+| `oiio/` | oiiotool (OpenImageIO 2.3), used to convert EXR frames with OCIO |
+| `ocio/aces_1.2cg/` | ACES 1.2 OCIO config: ACEScg to Output - sRGB for EXR sequences |
