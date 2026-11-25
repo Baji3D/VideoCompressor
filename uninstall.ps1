@@ -11,6 +11,8 @@ if ($assoc) {
     $assoc.Close()
 }
 $hkcu.DeleteSubKeyTree("Software\Microsoft\Windows\CurrentVersion\Uninstall\VideoCompressor", $false)
+# Windows 11 top-level menu entry
+try { Get-AppxPackage "VideoCompressor.ContextMenu" | Remove-AppxPackage } catch {}
 Remove-Item (Join-Path ([Environment]::GetFolderPath("Programs")) "Video Compressor.lnk") -ErrorAction SilentlyContinue
 Remove-Item $dest -Recurse -Force -ErrorAction SilentlyContinue
 

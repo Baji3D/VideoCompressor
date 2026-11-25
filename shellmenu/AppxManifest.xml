@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sparse package: gives the menu DLL the package identity Windows 11 requires for its
+     top-level right-click menu. The app files stay in the install folder (ExternalLocation).
+     install.ps1 registers it unsigned from loose files (Add-AppxPackage -Register), which needs Developer Mode. -->
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap uap10 desktop4 desktop5 com rescap">
+
+  <Identity Name="VideoCompressor.ContextMenu" Version="1.0.0.0" ProcessorArchitecture="x64"
+    Publisher="CN=VideoCompressor" />
+
+  <Properties>
+    <DisplayName>Video Compressor</DisplayName>
+    <PublisherDisplayName>Video Compressor</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <uap10:AllowExternalContent>true</uap10:AllowExternalContent>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22000.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+    <rescap:Capability Name="unvirtualizedResources" />
+  </Capabilities>
+
+  <Applications>
+    <Application Id="VideoCompressor" Executable="VideoCompressor.exe"
+      uap10:RuntimeBehavior="win32App" uap10:TrustLevel="mediumIL">
+      <uap:VisualElements DisplayName="Video Compressor" Description="Video Compressor right-click menu"
+        BackgroundColor="transparent" Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png" AppListEntry="none" />
+      <Extensions>
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:SurrogateServer DisplayName="Video Compressor menu">
+              <com:Class Id="2cbd15ad-c92a-47e0-be67-1fce36e59948" Path="VideoCompressorMenu.dll" ThreadingModel="STA" />
+            </com:SurrogateServer>
+          </com:ComServer>
+        </com:Extension>
+        <desktop4:Extension Category="windows.fileExplorerContextMenus">
+          <desktop4:FileExplorerContextMenus>
+            <desktop5:ItemType Type=".mp4"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".mov"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".mkv"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".avi"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".webm"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".wmv"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".m4v"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".flv"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".mpg"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".mpeg"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".mts"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".m2ts"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".3gp"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".exr"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".dpx"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".png"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".tif"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".tiff"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+            <desktop5:ItemType Type=".tga"><desktop5:Verb Id="VideoCompressor" Clsid="2cbd15ad-c92a-47e0-be67-1fce36e59948" /></desktop5:ItemType>
+          </desktop4:FileExplorerContextMenus>
+        </desktop4:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>

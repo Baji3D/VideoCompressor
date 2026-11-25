@@ -1,0 +1,4 @@
+LIBRARY VideoCompressorMenu
+EXPORTS
+    DllGetClassObject PRIVATE
+    DllCanUnloadNow PRIVATE

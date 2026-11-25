@@ -11,7 +11,9 @@ Compresses videos to a target file size (8 MB, 10 MB, 25 MB...) straight from th
 
 ## Use
 
-Right-click any video and choose **Video Compressor**. On Windows 11, choose **Show more options** first.
+Right-click any video and choose **Video Compressor**.
+
+On Windows 11 it's right there in the normal right-click menu, as long as **Developer Mode** is on (Settings > System > For developers) when you run Install.bat; Windows only lets unsigned apps add to that menu in Developer Mode. Without it, the menu is under **Show more options** (or Shift+right-click).
 
 - **Compress to 8 / 10 / 25 / 50 MB**: compresses right away and saves `name_compressed.mp4` next to the original.
 - **Make GIF (under 10 MB)**: turns the video into an animated GIF (`name.gif`, up to 480p at 15 fps), shrinking it further if needed to stay under 10 MB.
@@ -36,5 +38,6 @@ Settings > Apps > Video Compressor > Uninstall.
 | `launch.vbs` | Starts the app without a console window flashing up |
 | `install.ps1` / `Install.bat` | Copies the app to `%LOCALAPPDATA%\Programs\VideoCompressor` and adds the right-click menu |
 | `uninstall.ps1` | Removes everything the installer added |
+| `shellmenu/` | Windows 11 top-level menu: handler DLL and package manifest (`build.ps1` rebuilds the DLL/exe; needs VS C++ Build Tools) |
 | `oiio/` | oiiotool (OpenImageIO 2.3), used to convert EXR frames with OCIO |
 | `ocio/aces_1.2cg/` | ACES 1.2 OCIO config: ACEScg to Output - sRGB for EXR sequences |
